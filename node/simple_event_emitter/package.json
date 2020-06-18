@@ -1,0 +1,11 @@
+{
+  "name": "simple_event_emitter",
+  "version": "1.0.0",
+  "description": "Simple event emitter exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yuwono Bangun Nagoro",
+  "license": "ISC"
+}
