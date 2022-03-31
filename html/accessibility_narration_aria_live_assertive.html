@@ -1,0 +1,86 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Narration testing using aria live</title>
+        <style>
+            button {
+              margin-bottom: 1em;
+              font-size: 1.1em;
+              font-weight: bold;
+              color: black;
+              background-color: white;
+            }
+            button:hover,
+            button:focus,
+            button:active {
+              color: white;
+              background-color: black;
+            }
+            .message{
+                opacity: 0;
+            }
+        </style>
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+         <script>
+           $(document).ready(function() {
+               var nameVal;
+               var message;
+               $("#morning").click(function(){
+                    nameVal = $("#name").val();
+                    if(nameVal.length>0){
+                        message= "Good morning "+ nameVal;
+                    }else{
+                        message= "Good morning";
+                    }
+                    setTimeout(function(){
+                        $("#message").text(message);
+                    }, 2000);
+               });
+
+               $("#afternoon").click(function(){
+                    nameVal = $("#name").val();
+                    if(nameVal.length>0){
+                        message= "Good afternoon "+ nameVal;
+                    }else{
+                        message= "Good afternoon";
+                    }
+                    setTimeout(function(){
+                        $("#message").text(message);
+                    }, 2000);
+               });
+
+               $("#evening").click(function(){
+                    nameVal = $("#name").val();
+                    if(nameVal.length>0){
+                        message= "Good evening "+ nameVal;
+                    }else{
+                        message= "Good evening";
+                    }
+                    setTimeout(function(){
+                        $("#message").text(message);
+                    }, 2000);
+               });
+
+               $("#night").click(function(){
+                    nameVal = $("#name").val();
+                    if(nameVal.length>0){
+                        message= "Good night "+ nameVal;
+                    }else{
+                        message= "Good night";
+                    }
+                    setTimeout(function(){
+                        $("#message").text(message);
+                    }, 2000);
+               });
+           });
+           </script>
+    </head>
+    <body>
+        <input id="name"/>
+        <button id="morning">morning</button>
+        <button id="afternoon">afternoon</button>
+        <button id="evening">evening</button>
+        <button id="night">night</button>
+        <div id="message" class="message" aria-live="assertive"></div>
+    </body>
+</html>
