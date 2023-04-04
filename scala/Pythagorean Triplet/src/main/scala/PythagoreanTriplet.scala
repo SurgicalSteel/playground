@@ -1,6 +1,11 @@
 object PythagoreanTriplet {
-  def isPythagorean(a :Long, b :Long, c :Long):Boolean ={   ( (a*a) + (b*b) == c*c ) || ( (a*a) + (c*c) == b*b ) || ((b*b) + (c*c) == a*a)}
-  def pythagoreanTriplets(f :Long, t :Long):Seq[(Long,Long,Long)] = {
+  def isPythagorean(t :(Int,Int,Int)):Boolean ={   
+    val a = t._1
+    val b = t._2
+    val c = t._3
+    ( (a*a) + (b*b) == c*c )
+  }
+  def pythagoreanTriplets(f :Int, t :Int):Seq[(Int,Int,Int)] = {
     for{
       i <- f to t
       j <- i+1 to t
