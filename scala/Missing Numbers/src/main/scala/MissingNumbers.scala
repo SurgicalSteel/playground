@@ -29,7 +29,7 @@ object MissingNumbers {
     val arra = scala.io.StdIn.readLine().split(" ").map(_.toInt)
     val szb = scala.io.StdIn.readLine().toInt
     val arrb = scala.io.StdIn.readLine().split(" ").map(_.toInt)
-    //println(solve(Array(1,2,3,4),Array(1,1,2,3,3,3,4,4,5,5,5,5,5)))
+    println(solve(arra,arrb))
   }
 
 }
