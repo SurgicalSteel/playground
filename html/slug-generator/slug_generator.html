@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Slug Generator for Blogpost</title>
+        <script src="jquery-3.7.1.js"></script>
+        <script src="jquery-ui.js"></script>
+        <link rel="stylesheet" href="jquery-ui.css">
+        <script type="text/javascript">
+            $(document).ready( 
+                function() {
+                    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" });
+                }
+                 
+            );
+
+            function process(){
+                var title = $("#title").val().toLowerCase();
+                title = title.replaceAll(" ","-");
+                var date = $("#datepicker").val();
+                var result = "/" + date + "-" + title;
+                $("#result").text(result);
+            }
+            function reset(){
+                $("#title").val("");
+                $("#datepicker").val("");
+                $("#result").text("");
+            }
+        </script>
+    </head>
+    <body>
+        <p>Title: <input type="text" id="title"></p>
+        <p>Date: <input type="text" id="datepicker"></p>
+        <p>
+            <button id="process" onclick="process()">Process</button>
+            <button id="reset" onclick="reset()">Reset</button>
+        </p>
+        Result :
+        <p id="result"></p>
+    </body>
+</html>
