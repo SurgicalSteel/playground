@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Random Location Generator</title>
+        <script src="jquery-3.7.1.js"></script>
+        <script type="text/javascript">
+            $(document).ready( 
+                function() {
+
+                }
+                 
+            );
+            /*
+                test point :
+                    latitude = -7.802942
+                    longitude = 110.364549
+
+            */
+            function getRandomizedSignFactor(){
+                const d = new Date();
+                var ms = d.getMilliseconds();
+                if(ms %2 ==0){
+                    return -1;
+                }
+                return 1;
+            }
+
+            function getRandomizedDelta(maxDelta){
+                /* https://stackoverflow.com/questions/17726753/get-a-random-number-between-0-0200-and-0-120-float-numbers */
+                return (Math.random() * (0.000000 - maxDelta) + maxDelta).toFixed(6);
+            }
+
+            function process(){
+                var invalidMessage = "You have entered invalid { "
+                var arr = [];
+                
+                var rawCentralLatitude = $("#clatitude").val();
+                if (isNaN(rawCentralLatitude)){arr.push("Central Latitude");}
+                var centralLatitude = parseFloat(rawCentralLatitude);
+                
+                var rawCentralLongitude = $("#clongitude").val();
+                if (isNaN(rawCentralLongitude)){arr.push("Central Longitude");}
+                var centralLongitude = parseFloat(rawCentralLongitude);
+                
+                
+                var rawMaxDelta = $("#maxdelta").val();
+                if (isNaN(rawMaxDelta)){arr.push("Max Delta");}
+                var maxDelta = parseFloat(rawMaxDelta);
+
+                var rawPointsCount = $("#count").val();
+                if (isNaN(rawPointsCount)){arr.push("Points Count");}
+                var pointsCount = parseInt(rawPointsCount);
+
+
+                if(arr.length > 0){
+                    invalidMessage = invalidMessage + arr.join(",") + " }";
+                    alert(invalidMessage);
+                    return;
+                }
+
+                $("#result").text("");
+                var resultarr = [];
+                
+                $("#result").append("Id , Latitude ,  Longitude" + "<br>");
+                var oid = 1;
+                for(i=0;i<pointsCount;i++){
+                    var stemp = "";
+                    var tlat = (centralLatitude + (getRandomizedSignFactor() * getRandomizedDelta(maxDelta))).toFixed(6); 
+                    var tlon = (centralLongitude + (getRandomizedSignFactor() * getRandomizedDelta(maxDelta))).toFixed(6);
+                    stemp = (oid + i).toString() + " , "+ tlat.toString() +" , "+ tlon.toString();
+                    $("#result").append(stemp + "<br>");
+                }
+            }
+
+            function reset(){
+                $("#clatitude").val("");
+                $("#clongitude").val("");
+                $("#maxdelta").val("");
+                $("#count").val("");
+                $("#result").text("");
+            }
+        </script>
+    </head>
+    <body>
+        <p>Random Location Generator</p>
+        <table>
+            <tr><td>Central Latitude</td><td><input type="text" id="clatitude"></td></tr>
+            <tr><td>Central Longitude</td><td><input type="text" id="clongitude"></td></tr>
+            <tr><td>Max Delta</td><td><input type="text" id="maxdelta"></td></tr>
+            <tr><td>Points Count</td><td><input type="text" id="count"></td></tr>
+         </table>
+        <p>
+            <button id="process" onclick="process()">Process</button>
+            <button id="reset" onclick="reset()">Reset</button>
+        </p>
+        Result :
+        <p id="result"></p>
+    </body>
+</html>
