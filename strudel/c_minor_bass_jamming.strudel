@@ -1,0 +1,10 @@
+const dbank = "tr909"
+
+$: s("hh!8").bank(dbank).gain(.2)
+$: s("bd").struct("{1 0 0 1 0 1 0}%8").bank(dbank)._punchcard()
+$: s("sd").bank(dbank).beat("4,12", 16)._punchcard()
+$bass: n(irand(10).sub(7).seg(8)).scale("c:minor").sound("gm_electric_bass_finger")
+
+//$: s("supersaw").detune(1).rel(5).beat(2,32).slow(2).orbit(2,3,4).fm("2")
+
+$: s("pulse").orbit(4).seg(16).dec(.1).fm(time).fmh(time)
